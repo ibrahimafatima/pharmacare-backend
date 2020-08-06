@@ -1,4 +1,4 @@
 {
   "jwtPrivateKey": "pharmacareKey",
-  "db": "mongodb://localhost/pharmacare"
+  "db": "pharmacare_db"
 }
