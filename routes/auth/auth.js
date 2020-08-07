@@ -36,6 +36,12 @@ router.post("/admin", async (req, res) => {
   res.header("x-auth-token", token).send(token);
 });
 
+router.get("/", async (req, res) => {
+  const users = await Auth.find();
+  if (!users) return res.status(404).send("Cant find users");
+  res.send(users);
+});
+
 router.post("/registration", [isAuth, isAdmin], async (req, res) => {
   const { error } = validateUser(req.body);
   if (error) return res.status(404).send(error.details[0].message);
