@@ -24,4 +24,10 @@ router.get("/", isAuth, async (req, res) => {
   res.send(address);
 });
 
+router.get("/all", async (req, res) => {
+  const addresses = await Address.find();
+  if (!addresses) return res.status(404).send("No address was found");
+  res.send(addresses);
+});
+
 module.exports = router;
