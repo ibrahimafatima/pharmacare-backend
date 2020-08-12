@@ -27,6 +27,10 @@ const medecinesSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  store_name: {
+    type: String,
+    required: true,
+  },
   rack: {
     type: String,
   },
@@ -52,6 +56,7 @@ function validateMedecines(medObj) {
     price: Joi.number().min(0).required(),
     cost_price: Joi.number().min(0).required(),
     quantity: Joi.number().min(0).required(),
+    store_name: Joi.string().min(2).max(30).required(),
     rack: Joi.string().max(20),
     shelf: Joi.string().max(20),
     expiry_date: Joi.date(),

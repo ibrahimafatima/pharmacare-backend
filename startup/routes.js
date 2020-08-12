@@ -6,6 +6,7 @@ const route_sales = require("../routes/sales/sales");
 const route_users = require("../routes/users/users");
 const route_auth = require("../routes/auth/auth");
 const route_expenses = require("../routes/expenses/expenses");
+const route_mini_store = require("../routes/mini-store/mini-store");
 const route_address = require("../routes/address/address");
 const route_new_expenses = require("../routes/expenses/new-expense");
 const route_medecines = require("../routes/medecines/medecines");
@@ -19,6 +20,7 @@ module.exports = function (app) {
   app.use("/api/users", route_auth);
   app.use("/api/expenses", route_expenses);
   app.use("/api/address", route_address);
+  app.use("/api/mini-store", route_mini_store);
   app.use("/api/new/expenses", route_new_expenses);
   app.use("/api/all-users", route_users);
   app.use("/api/medecines", route_medecines);

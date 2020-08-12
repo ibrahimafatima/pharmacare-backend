@@ -38,6 +38,10 @@ const salesSchema = mongoose.Schema({
     type: String,
     default: hour + ":" + minute,
   },
+  store_name: {
+    type: String,
+    required: true,
+  },
   sold_by: {
     type: String,
     required: true,

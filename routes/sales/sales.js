@@ -16,6 +16,7 @@ router.post("/", isAuth, async (req, res) => {
     quantity: req.body.quantity,
     price: req.body.price,
     cost_price: req.body.cost_price,
+    store_name: req.body.store_name,
     sold_by: req.userToken.username,
     secret_key: req.userToken.secret_key,
   });

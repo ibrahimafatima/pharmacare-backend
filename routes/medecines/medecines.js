@@ -1,7 +1,6 @@
 const express = require("express");
 const moment = require("moment");
 const isAuth = require("../../middleware/isAuth");
-const { isPharmacist } = require("../../middleware/roles");
 const {
   Medecines,
   validateMedecines,
@@ -34,6 +33,7 @@ router.post("/add", [isAuth], async (req, res) => {
     price: req.body.price,
     cost_price: req.body.cost_price,
     quantity: req.body.quantity,
+    store_name: req.body.store_name,
     rack: req.body.rack,
     shelf: req.body.shelf,
     expiry_date: req.body.expiry_date,
@@ -57,6 +57,7 @@ router.put("/update/:id", [isAuth], async (req, res) => {
     price: req.body.price,
     cost_price: req.body.cost_price,
     quantity: parseFloat(req.body.quantity) + parseFloat(medecine.quantity),
+    store_name: req.body.store_name,
     rack: req.body.rack,
     shelf: req.body.shelf,
     expiry_date: req.body.expiry_date,
@@ -89,6 +90,7 @@ router.get("/", [isAuth], async (req, res) => {
         price: expiredMed[0].price,
         cost_price: expiredMed[0].cost_price,
         quantity: expiredMed[0].quantity,
+        store_name: expiredMed[0].store_name,
         rack: expiredMed[0].rack,
         shelf: expiredMed[0].shelf,
         expiry_date: expiredMed[0].expiry_date,
