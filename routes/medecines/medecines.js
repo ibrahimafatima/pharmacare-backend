@@ -48,7 +48,7 @@ router.put("/update/:id", [isAuth], async (req, res) => {
   const { error } = validateMedecines(req.body);
   if (error) return res.status(404).send(error.details[0].message);
 
-  const medecine = await Medecines.findById(req.params.id);
+  //const medecine = await Medecines.findById(req.params.id);
 
   const updatedMedecine = await Medecines.findByIdAndUpdate(req.params.id, {
     name: req.body.name,
@@ -56,7 +56,7 @@ router.put("/update/:id", [isAuth], async (req, res) => {
     type: req.body.type,
     price: req.body.price,
     cost_price: req.body.cost_price,
-    quantity: parseFloat(req.body.quantity) + parseFloat(medecine.quantity),
+    quantity: req.body.quantity, //parseFloat(req.body.quantity) + parseFloat(medecine.quantity),
     store_name: req.body.store_name,
     rack: req.body.rack,
     shelf: req.body.shelf,
