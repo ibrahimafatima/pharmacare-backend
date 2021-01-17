@@ -72,20 +72,18 @@ router.post("/sales-history", [isAuth], async (req, res) => {
   res.send(salesHistory);
 });
 
-router.post("/revert", [isAuth], async (req, res) => {
-  const salesToRemove = await Sales.findOne({
-    $and: [{ name: req.body.name }, { secret_key: req.userToken.secret_key }],
-  });
+router.delete("/revert/:id", [isAuth], async (req, res) => {
+  const salesToRemove = await Sales.findById(req.params.id);
   if (!salesToRemove) return res.status(404).send("Sales not found");
-  await salesToRemove.remove();
-
+  
   const medecine = await Medecines.findOne({
-    $and: [{ name: req.body.name }, { secret_key: req.userToken.secret_key }],
+    $and: [{ name: salesToRemove.name }, { secret_key: req.userToken.secret_key }],
   });
-  if (!medecine) return res.status(404).send("Medecine not found");
+   if (!medecine) return res.status(404).send("Medecine not found");
 
-  medecine.quantity += req.body.quantity;
+   medecine.quantity += salesToRemove.quantity;
   await medecine.save();
+  await salesToRemove.remove();
   res.send(salesToRemove);
 });
 
